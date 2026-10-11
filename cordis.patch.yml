@@ -1,0 +1,10 @@
+# Bundle default contributed when a profile lists this plugin.
+# The profile row stays the authority; this default stays disabled.
+- insert:
+    - id: dsh-memory-gateway
+      name: 'dsh-memory-gateway'
+      config:
+        gateway:
+          enabled: false
+        pilot:
+          enabled: false

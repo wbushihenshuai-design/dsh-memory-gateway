@@ -1,0 +1,9 @@
+# secrets & runtime state never enter the repo
+GATEWAY_API_KEY.txt
+*.key
+*.env
+.env
+node_modules/
+state/
+logs/
+*.log
