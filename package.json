@@ -5,5 +5,13 @@
   "description": "DSH Memory Gateway with intelligent knowledge graph (batch 2)",
   "type": "module",
   "main": "index.js",
-  "dependencies": {}
+  "dependencies": {},
+  "dsh": {
+    "engines": {
+      "dsh": ">=0.1.5-rc.1"
+    },
+    "bundle": {
+      "patch": "./dsh/cordis.patch.yml"
+    }
+  }
 }
