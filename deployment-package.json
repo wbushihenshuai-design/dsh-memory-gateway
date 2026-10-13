@@ -1,0 +1,39 @@
+{
+  "name": "dsh-profile-web",
+  "private": true,
+  "dsh": {
+    "profile": {
+      "bundles": [
+        "@deepseek-ai/dsh-base",
+        "@deepseek-ai/dsh-web-app",
+        "@linxin666/dsh-web-all",
+        "@liustack/modsearch",
+        "dsh-ego-browser",
+        "dshmarket",
+        "@linxin666/dsh-client-ui-task-board",
+        "dsh-client-auto-continue",
+        "@wxg-prc-cpg/dsh-weknora",
+        "dsh-memory-gateway"
+      ],
+      "patchReload": "live"
+    }
+  },
+  "dependencies": {
+    "@linxin666/dsh-client-ui-task-board": "0.4.4",
+    "@linxin666/dsh-web-all": "0.4.4",
+    "@liustack/modsearch": "5.10.5",
+    "@wxg-prc-cpg/dsh-weknora": "^0.1.0",
+    "dsh-client-auto-continue": "0.12.1",
+    "dsh-ego-browser": "0.8.6",
+    "dsh-memory-gateway": "file:/home/codex/_work/dsh-memory-releases/phase1-96e9db5",
+    "dshmarket": "1.66.7"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "node-pty",
+      "ssh2",
+      "cpu-features",
+      "cloudflared"
+    ]
+  }
+}

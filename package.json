@@ -1,21 +1,9 @@
 {
   "name": "dsh-memory-gateway",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "Unified DSH memory bundle: instant session memory (gateway) + fail-closed WeKnora knowledge pilot + retained WeKnora sidebar panel. Merges three former plugins.",
+  "description": "DSH Memory Gateway with intelligent knowledge graph (batch 2)",
   "type": "module",
-  "exports": { ".": "./index.js", "./client": "./client.js" },
-  "dsh": {
-    "bundle": { "patch": "./cordis.patch.yml" },
-    "client": {
-      "platform": "web",
-      "immediately": true,
-      "inject": [
-        "@deepseek-ai/dsh-client-ui-sidebar",
-        "@deepseek-ai/dsh-client-ui-sidebar-right",
-        "@deepseek-ai/dsh-client-locale"
-      ]
-    }
-  },
+  "main": "index.js",
   "dependencies": {}
 }

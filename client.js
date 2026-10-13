@@ -73,6 +73,31 @@ window.__ModuleLoader__.load({
       )
     }
 
+    function MemoryStatus({ useTabInfo }) {
+      const { tab } = useTabInfo()
+      const [state, setState] = React.useState(null)
+      React.useEffect(() => {
+        let active = true
+        const sid = typeof tab?.sessionId === 'string' ? tab.sessionId : null
+        const load = async () => {
+          try {
+            const url = new URL('api/memory-gateway/status', document.baseURI)
+            if (sid) url.searchParams.set('session_id', sid)
+            const res = await fetch(url, { cache: 'no-store' })
+            if (!res.ok) throw new Error('unavailable')
+            const data = await res.json()
+            if (active) setState(data)
+          } catch { if (active) setState({ unavailable: true }) }
+        }
+        load()
+        const timer = setInterval(load, 10000)
+        return () => { active = false; clearInterval(timer) }
+      }, [tab?.sessionId])
+      return h('details', { className: 'weknora-hint', 'data-memory-status': true },
+        h('summary', null, '记忆运行状态（提交不等于已保存）'),
+        h('pre', { style: { whiteSpace: 'pre-wrap', maxHeight: 180, overflow: 'auto' } }, state ? JSON.stringify(state, null, 2) : '正在读取状态…'))
+    }
+
     function WeKnoraPanel({ useTabInfo, t }) {
       const { tab } = useTabInfo()
       const [generation, setGeneration] = React.useState(0)
@@ -100,6 +125,7 @@ window.__ModuleLoader__.load({
           h('button', { type: 'button', className: 'weknora-control', onClick: refresh, title: t('reload'), 'aria-label': t('reload') }, '↻'),
           h('a', { className: 'weknora-control', href: WEKNORA_URL, target: '_blank', rel: 'noopener noreferrer', title: t('external'), 'aria-label': t('external') }, '↗'),
         ),
+        h(MemoryStatus, { useTabInfo }),
         h('div', { className: 'weknora-hint' }, t('hint')),
         pending ? h('div', { className: 'weknora-hint', role: 'status' }, t(notice ? 'unavailable' : 'loading')) : null,
         h('iframe', {
